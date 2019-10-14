@@ -179,7 +179,9 @@ open class QuickScanner: NSObject {
             let convPoint = videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: point)
 
             device.exposurePointOfInterest = convPoint
-            device.focusPointOfInterest = convPoint
+            if device.isFocusPointOfInterestSupported {
+                device.focusPointOfInterest = convPoint
+            }
             device.unlockForConfiguration()
         } catch {
             delegate?.quickScanner(self, didReceiveError: .system(error))
