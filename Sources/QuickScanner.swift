@@ -69,7 +69,7 @@ open class QuickScanner: NSObject {
                 }
 
                 self.prepareVideoPreviewLayer()
-                self.setupSessionInput(for: .back)
+                self.setupSessionInput(for: .front)
                 self.setupSessionOutput()
 
                 DispatchQueue.main.async {
