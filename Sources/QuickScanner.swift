@@ -120,7 +120,11 @@ open class QuickScanner: NSObject {
                 device.autoFocusRangeRestriction = .near
             }
             
-            device.focusMode = .continuousAutoFocus
+            let focusMode = AVCaptureDevice.FocusMode.continuousAutoFocus
+            if device.isFocusModeSupported(focusMode) {
+                device.focusMode = focusMode
+            }
+            
             device.exposureMode = .continuousAutoExposure
 
             if let currentInput = captureSession.inputs.filter({$0 is AVCaptureDeviceInput}).first {
