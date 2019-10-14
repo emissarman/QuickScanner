@@ -116,7 +116,10 @@ open class QuickScanner: NSObject {
             captureSession.beginConfiguration()
 
             // autofocus settings and focus on middle point
-            device.autoFocusRangeRestriction = .near
+            if device.isAutoFocusRangeRestrictionSupported {
+                device.autoFocusRangeRestriction = .near
+            }
+            
             device.focusMode = .continuousAutoFocus
             device.exposureMode = .continuousAutoExposure
 
