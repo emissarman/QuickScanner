@@ -25,6 +25,7 @@ open class QuickScanner: NSObject {
 
     private var videoPermission: VideoPermission
     private var codeTypes: [CodeType]
+    private var position: AVCaptureDevice.Position
 
     /// Rect for scanning focus area. It calculate coordinates of ROI based on coordinates of videoPreview.
     private var roiBounds: CGRect {
@@ -49,9 +50,10 @@ open class QuickScanner: NSObject {
     }
     
     /// Initialize the captureSession object.
-    public init(codeTypes: [CodeType]) {
+    public init(position: AVCaptureDevice.Position = .front, codeTypes: [CodeType]) {
         captureSession = AVCaptureSession()
         videoPermission = VideoPermission()
+        self.position = position
         self.codeTypes = codeTypes
     }
 
@@ -69,7 +71,7 @@ open class QuickScanner: NSObject {
                 }
 
                 self.prepareVideoPreviewLayer()
-                self.setupSessionInput(for: .front)
+                self.setupSessionInput(for: self.position)
                 self.setupSessionOutput()
 
                 DispatchQueue.main.async {
