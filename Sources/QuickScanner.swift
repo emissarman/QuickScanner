@@ -50,7 +50,7 @@ open class QuickScanner: NSObject {
     }
     
     /// Initialize the captureSession object.
-    public init(position: AVCaptureDevice.Position = .front, codeTypes: [CodeType]) {
+    public init(position: AVCaptureDevice.Position, codeTypes: [CodeType]) {
         captureSession = AVCaptureSession()
         videoPermission = VideoPermission()
         self.position = position

@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             CodeType.upce]
 
         // scanner initialization and set delegate
-        barcodeScanner = QuickScanner(codeTypes: types)
+        barcodeScanner = QuickScanner(position: .back, codeTypes: types)
         barcodeScanner.delegate = self
 
         configureMessageLabel()
